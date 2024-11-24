@@ -65,7 +65,7 @@
 
 <style>
     :global(body) {
-        background-image: url("/keepyoursecrets.jpeg");
+        background-image: url("keepyoursecrets.jpeg");
     }
 
     .container {

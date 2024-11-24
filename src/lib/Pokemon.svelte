@@ -14,7 +14,7 @@
     $effect(() => {
         if (pokedexIndex !== undefined) {
             let img = new Image();
-            img.src = `/pokemon/${pokedexIndex}.png`;
+            img.src = `pokemon/${pokedexIndex}.png`;
             img.onload = () => {
                 image = img;
             }

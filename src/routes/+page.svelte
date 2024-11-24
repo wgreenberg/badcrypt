@@ -29,7 +29,7 @@
 
 <main>
 <div class="container">
-    <img src="/cat1.gif">
+    <img src="cat1.gif">
     <div class="image">
         <ImageLoad bind:image={uploadedImage} {height} {width} />
         <Pokemon bind:image={pokemonImage} />
