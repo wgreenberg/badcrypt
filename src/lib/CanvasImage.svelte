@@ -70,7 +70,7 @@
         </fieldset>
     </div>
     {#if downloadReady}
-    <a href="#" onclick={download}><img src="/download.gif"></a>
+    <a href="#" onclick={download}><img src="download.gif"></a>
     {/if}
     {/if}
 </div>
