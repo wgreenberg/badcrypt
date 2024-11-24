@@ -23,9 +23,9 @@
   $effect(() => {
         if (image && ctx) {
             console.log('image changed, drawing', image.src)
-            // ctx.clearRect(0, 0, width, height);
+            ctx.clearRect(0, 0, width, height);
             ctx.drawImage(image, 0, 0, width, height);
-            base64ImageData = canvas.toDataURL('image/jpeg');
+            base64ImageData = canvas.toDataURL();
             console.log('drawn')
         }
   });
@@ -36,17 +36,38 @@
       const imageData = ctx.getImageData(0, 0, width, height);
       secret.apply(imageData.data);
       ctx.putImageData(imageData, 0, 0);
-      base64ImageData = canvas.toDataURL('image/jpeg');
+      base64ImageData = canvas.toDataURL();
+  }
+
+  function download() {
+      if (base64ImageData) {
+          const link = document.createElement('a');
+          link.href = base64ImageData;
+          link.download = 'secret.png';
+          link.click();
+          link.remove();
+      }
+
   }
 </script>
 
 <div>
-<canvas
-    bind:this={canvas}
-    height=200
-    width=200
->
-</canvas>
-<Secret bind:secret={secret} />
-<button onclick={applySecret}>Encrypt/Decrypt</button>
+    <canvas
+        bind:this={canvas}
+        {width}
+        {height}
+    >
+    </canvas>
+    <div class="secretbox">
+        <Secret bind:secret={secret} />
+        <button onclick={applySecret}>Encrypt/Decrypt</button>
+    </div>
+    <button onclick={download}>Download image</button>
 </div>
+
+<style>
+canvas {
+    width: 300px;
+    height: 300px;
+}
+</style>

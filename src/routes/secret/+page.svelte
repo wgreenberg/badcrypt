@@ -23,8 +23,10 @@
     function go() {
         if (operation === Operation.Encrypt && recipientKey) {
             result = recipientKey.encryptString(input);
+            navigator.clipboard.writeText(result);
         } else if (operation === Operation.Decrypt) {
             result = keyPair!.decryptString(input);
+            navigator.clipboard.writeText(result);
         } else {
             result = undefined;
         }
@@ -36,17 +38,57 @@
     }
 </script>
 
-<div>
-<h1>Share a secret!!!</h1>
-<OperationChooser bind:operation={operation} bind:recipientKey={recipientKey} />
-<div>
+<div class="container">
+<div class="opbox">
+    <OperationChooser bind:operation={operation} bind:recipientKey={recipientKey} />
+    {#if operation !== Operation.None}
+    <div>
     <p>Secret:</p>
     <input type="text" maxlength={operation === Operation.Encrypt ? 4 : undefined} bind:value={input} />
     <button onclick={go}>GO</button>
     {#if result}
-        <span><b>Result: </b> {result}</span>
+        <span><b>Copied result: </b> {result}</span>
+    {/if}
+    </div>
     {/if}
 </div>
+<div class="keyzone">
 <KeyPair {keyPair}/>
 <button onclick={reroll}>Reroll</button>
 </div>
+<img height=200 width=800 src="secretsafe.jpg" class={result ? "show" : "hide"}>
+</div>
+
+<style>
+    :global(body) {
+        background-image: url("/keepyoursecrets.jpeg");
+    }
+
+    .container {
+        padding: 10px;
+        width: 500px;
+    }
+
+    .hide {
+      opacity: 0;
+      transition: opacity 3s linear;
+      -webkit-transition: opacity 3s linear;
+      -moz-transition: opacity 3s linear;
+      -o-transition: opacity 3s linear;
+    }
+    .show {
+      opacity: 1;
+      transition: opacity 3s linear;
+      -webkit-transition: opacity 3s linear;
+      -moz-transition: opacity 3s linear;
+      -o-transition: opacity 3s linear;
+    }
+
+    .container {
+        background-color: white;
+    }
+
+    .keyzone {
+        border: 1px dashed black;
+    }
+</style>

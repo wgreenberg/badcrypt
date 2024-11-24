@@ -4,32 +4,36 @@
     import { onMount } from "svelte";
     import CanvasImage from "$lib/CanvasImage.svelte";
     import ShareLink from "$lib/ShareLink.svelte";
+    import Pokemon from "$lib/Pokemon.svelte";
 
-    const height = 50;
-    const width = 50;
+    const height = 200;
+    const width = 200;
 
     let image: HTMLImageElement | undefined = $state(undefined);
+    let pokemonImage: HTMLImageElement | undefined = $state(undefined);
+    let uploadedImage: HTMLImageElement | undefined = $state(undefined);
     let base64ImageData: string | undefined = $state(undefined);
 
-    onMount(() => {
-        if (window.location.hash !== '') {
-            console.log('makin image')
-            let img = new Image();
-            img.src = window.location.hash.slice(1);
-            image = img;
+    $effect(() => {
+        if (pokemonImage) {
+            image = pokemonImage;
         }
-    });
+    })
+
+    $effect(() => {
+        if (uploadedImage) {
+            image = uploadedImage;
+        }
+    })
 </script>
 
 <div>
     <h1>fuck</h1>
     <div class="image">
-        <ImageLoad bind:image={image} {height} {width} />
+        <ImageLoad bind:image={uploadedImage} {height} {width} />
+        <Pokemon bind:image={pokemonImage} />
         <CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} />
     </div>
-    {#if base64ImageData }
-        <ShareLink {base64ImageData} />
-    {/if}
 </div>
 
 <style>
