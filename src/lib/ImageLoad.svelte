@@ -17,7 +17,7 @@
         reader.readAsDataURL((inputEvent.target! as any).files[0]);
     }
 </script>
-<div id="app">
-    <h1>Upload Image</h1>
+
+<div>
 	<input type="file" onchange={handleImage} />
 </div>

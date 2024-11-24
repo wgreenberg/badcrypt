@@ -4,12 +4,10 @@
     import { onMount } from "svelte";
     import CanvasImage from "$lib/CanvasImage.svelte";
     import ShareLink from "$lib/ShareLink.svelte";
-    import Secret from "$lib/Secret.svelte";
 
-    const height = 200;
-    const width = 200;
+    const height = 50;
+    const width = 50;
 
-    let secret: SymmetricKey | undefined = $state(undefined);
     let image: HTMLImageElement | undefined = $state(undefined);
     let base64ImageData: string | undefined = $state(undefined);
 
@@ -23,10 +21,19 @@
     });
 </script>
 
-<h1>fuck</h1>
-<ImageLoad bind:image={image} {height} {width} />
-<CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} {secret} />
-<Secret bind:secret={secret} />
-{#if base64ImageData }
-    <ShareLink {base64ImageData} />
-{/if}
+<div>
+    <h1>fuck</h1>
+    <div class="image">
+        <ImageLoad bind:image={image} {height} {width} />
+        <CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} />
+    </div>
+    {#if base64ImageData }
+        <ShareLink {base64ImageData} />
+    {/if}
+</div>
+
+<style>
+    .image {
+        border: 1px dashed black;
+    }
+</style>

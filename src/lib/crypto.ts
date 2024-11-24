@@ -1,5 +1,5 @@
-const Q_OPTIONS = [19, 23, 29, 31, 37, 41, 43, 47, 53];
-const P_OPTIONS = [59, 61, 67, 71, 73, 79, 83, 89, 97];
+const Q_OPTIONS = [58111, 51361, 43103, 63607];
+const P_OPTIONS = [65011, 36373, 62869, 62467];
 
 function getRandomParams(): [number, number] {
     const q = Q_OPTIONS[getRandomInt(0, Q_OPTIONS.length - 1)];
@@ -195,7 +195,7 @@ export class RsaKeyPair {
     }
 
     public decryptString(ciphertext: string): string {
-        const decoder = new TextDecoder('utf-8');
+        const decoder = new TextDecoder();
         const bigInt = base64DecodeBigInt(ciphertext);
         console.log(ciphertext, bigInt);
         let bytes = bigIntToByteArray(this.decrypt(bigInt));

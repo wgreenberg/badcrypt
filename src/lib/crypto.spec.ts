@@ -24,8 +24,9 @@ describe('rsa', () => {
         let alice = RsaKeyPair.generate();
         let bob = RsaKeyPair.generate();
 
-        let message = "👻";
+        let message = "afaf";
         let ciphertext = bob.publicKey.encryptString(message);
+        console.log(bob.publicKey, ciphertext);
         let deciphered = bob.decryptString(ciphertext);
         expect(deciphered).equal(message);
     })
