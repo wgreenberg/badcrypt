@@ -28,18 +28,15 @@
 </script>
 
 <main>
-<div>
+<div class="container">
+    <img src="/cat1.gif">
     <div class="image">
         <ImageLoad bind:image={uploadedImage} {height} {width} />
         <Pokemon bind:image={pokemonImage} />
         <CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} />
     </div>
-    <img src="/cat1.gif">
 </div>
 </main>
 
 <style>
-    .image {
-        border: 1px dashed black;
-    }
 </style>
