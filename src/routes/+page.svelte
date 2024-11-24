@@ -34,6 +34,7 @@
         <Pokemon bind:image={pokemonImage} />
         <CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} />
     </div>
+    <img src="/cat1.gif">
 </div>
 
 <style>

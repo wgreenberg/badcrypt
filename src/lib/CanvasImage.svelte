@@ -15,6 +15,7 @@
   let canvas: HTMLCanvasElement;
   let ctx : CanvasRenderingContext2D | undefined = undefined;
   let secret: SymmetricKey | undefined = $state(undefined);
+  let downloadReady = $state(false);
 
   onMount(() => {
       ctx = canvas.getContext("2d")!;
@@ -37,6 +38,7 @@
       secret.apply(imageData.data);
       ctx.putImageData(imageData, 0, 0);
       base64ImageData = canvas.toDataURL();
+      downloadReady = true;
   }
 
   function download() {
@@ -58,11 +60,15 @@
         {height}
     >
     </canvas>
+    {#if base64ImageData}
     <div class="secretbox">
         <Secret bind:secret={secret} />
         <button onclick={applySecret}>Encrypt/Decrypt</button>
     </div>
-    <button onclick={download}>Download image</button>
+    {#if downloadReady}
+    <a href="#" onclick={download}><img src="/download.gif"></a>
+    {/if}
+    {/if}
 </div>
 
 <style>
