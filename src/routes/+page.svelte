@@ -27,8 +27,8 @@
     })
 </script>
 
+<main>
 <div>
-    <h1>fuck</h1>
     <div class="image">
         <ImageLoad bind:image={uploadedImage} {height} {width} />
         <Pokemon bind:image={pokemonImage} />
@@ -36,6 +36,7 @@
     </div>
     <img src="/cat1.gif">
 </div>
+</main>
 
 <style>
     .image {

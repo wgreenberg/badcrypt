@@ -14,8 +14,10 @@
 <div>
     <div class="publickey">
         <p>My public key</p>
+        <fieldset role="group">
         <input type="text" value={keyPair ? JSON.stringify(keyPair.publicKey) : 'loading...'}/>
-        <button onclick={copyPub}>Copy Public Key</button>
+        <input type="submit" onclick={copyPub} value="Copy Public Key"/>
+        </fieldset>
     </div>
     <div class="privatekey">
         <p>My private key</p>

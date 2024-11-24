@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
   import Secret from "$lib/Secret.svelte";
-    import type { RsaKeyPair, RsaPublicKey, SymmetricKey } from "./crypto";
+    import { SymmetricKey, type RsaKeyPair, type RsaPublicKey } from "./crypto";
     import { Operation } from "./operation";
     import { walk } from "svelte/compiler";
 
@@ -14,7 +14,7 @@
 
   let canvas: HTMLCanvasElement;
   let ctx : CanvasRenderingContext2D | undefined = undefined;
-  let secret: SymmetricKey | undefined = $state(undefined);
+  let secretStr: string | undefined = $state(undefined);
   let downloadReady = $state(false);
 
   onMount(() => {
@@ -30,6 +30,8 @@
             console.log('drawn')
         }
   });
+
+  let secret = $derived(secretStr ? new SymmetricKey(secretStr) : undefined);
 
   function applySecret() {
       if (!ctx || !secret) return;
@@ -62,8 +64,10 @@
     </canvas>
     {#if base64ImageData}
     <div class="secretbox">
-        <Secret bind:secret={secret} />
-        <button onclick={applySecret}>Encrypt/Decrypt</button>
+        <fieldset role="group">
+            <input type="text" bind:value={secretStr} />
+            <input type="submit" onclick={applySecret} value="Encrypt/Decrypt" />
+        </fieldset>
     </div>
     {#if downloadReady}
     <a href="#" onclick={download}><img src="/download.gif"></a>

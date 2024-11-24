@@ -38,14 +38,17 @@
     }
 </script>
 
+<main>
 <div class="container">
 <div class="opbox">
     <OperationChooser bind:operation={operation} bind:recipientKey={recipientKey} />
     {#if operation !== Operation.None}
     <div>
     <p>Secret:</p>
+    <fieldset role="group">
     <input type="text" maxlength={operation === Operation.Encrypt ? 4 : undefined} bind:value={input} />
-    <button onclick={go}>GO</button>
+    <input type="submit" onclick={go} value="GO" />
+    </fieldset>
     {#if result}
         <span><b>Copied result: </b> {result}</span>
     {/if}
@@ -58,6 +61,7 @@
 </div>
 <img height=200 width=800 src="secretsafe.jpg" class={result ? "show" : "hide"}>
 </div>
+</main>
 
 <style>
     :global(body) {
@@ -71,21 +75,17 @@
 
     .hide {
       opacity: 0;
-      transition: opacity 3s linear;
-      -webkit-transition: opacity 3s linear;
-      -moz-transition: opacity 3s linear;
-      -o-transition: opacity 3s linear;
+      transition: opacity 1s linear;
+      -webkit-transition: opacity 1s linear;
+      -moz-transition: opacity 1s linear;
+      -o-transition: opacity 1s linear;
     }
     .show {
       opacity: 1;
-      transition: opacity 3s linear;
-      -webkit-transition: opacity 3s linear;
-      -moz-transition: opacity 3s linear;
-      -o-transition: opacity 3s linear;
-    }
-
-    .container {
-        background-color: white;
+      transition: opacity 1s linear;
+      -webkit-transition: opacity 1s linear;
+      -moz-transition: opacity 1s linear;
+      -o-transition: opacity 1s linear;
     }
 
     .keyzone {
