@@ -28,7 +28,7 @@
 </script>
 
 <main>
-<div class="window">
+<div class="window" style="width: 610px">
     <div class="title-bar">
         <div class="title-bar-text">
             Symmetric image encryption
