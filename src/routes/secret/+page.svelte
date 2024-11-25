@@ -54,12 +54,12 @@
     {/if}
     </div>
     {/if}
+    <img src="./secretsafe.jpg" class={result ? "show" : "hide"}>
 </div>
 <div class="keyzone">
 <KeyPair {keyPair}/>
 <button onclick={reroll}>Reroll</button>
 </div>
-<img height=200 width=800 src="./secretsafe.jpg" class={result ? "show" : "hide"}>
 </div>
 </main>
 
@@ -71,21 +71,24 @@
     .container {
         padding: 10px;
         width: 500px;
+        background-color: rgba(50, 50, 50, 0.5);
     }
 
     .hide {
-      opacity: 0;
-      transition: opacity 1s linear;
-      -webkit-transition: opacity 1s linear;
-      -moz-transition: opacity 1s linear;
-      -o-transition: opacity 1s linear;
+        height: 0;
+        width: 0;
+        opacity: 0;
+      transition: opacity 2s linear;
+      -webkit-transition: opacity 2s linear;
+      -moz-transition: opacity 2s linear;
+      -o-transition: opacity 2s linear;
     }
     .show {
       opacity: 1;
-      transition: opacity 1s linear;
-      -webkit-transition: opacity 1s linear;
-      -moz-transition: opacity 1s linear;
-      -o-transition: opacity 1s linear;
+      transition: opacity 2s linear;
+      -webkit-transition: opacity 2s linear;
+      -moz-transition: opacity 2s linear;
+      -o-transition: opacity 2s linear;
     }
 
     .keyzone {
