@@ -1,9 +1,6 @@
 <script lang="ts">
   import { onMount, tick } from "svelte";
-  import Secret from "$lib/Secret.svelte";
-    import { SymmetricKey, type RsaKeyPair, type RsaPublicKey } from "./crypto";
-    import { Operation } from "./operation";
-    import { walk } from "svelte/compiler";
+  import { SymmetricKey, type RsaKeyPair, type RsaPublicKey } from "./crypto";
 
   let { base64ImageData = $bindable(), image, height, width }: {
       base64ImageData: string | undefined,
@@ -16,6 +13,8 @@
   let ctx : CanvasRenderingContext2D | undefined = undefined;
   let secretStr: string | undefined = $state(undefined);
   let downloadReady = $state(false);
+  let showSecret = $state(false);
+  let secretInputType = $derived(showSecret ? "text" : "password");
 
   onMount(() => {
       ctx = canvas.getContext("2d")!;
@@ -65,9 +64,10 @@
     {#if base64ImageData}
     <div class="secretbox">
         <fieldset role="group">
-            <input type="text" bind:value={secretStr} />
+            <input type={secretInputType} bind:value={secretStr} />
             <input type="submit" onclick={applySecret} value="Encrypt/Decrypt" />
         </fieldset>
+        <label for="showSecret"><input type="checkbox" name="showSecret" bind:checked={showSecret} />Show Secret</label>
     </div>
     {#if downloadReady}
     <a href="#" onclick={download}><img src="download.gif"></a>

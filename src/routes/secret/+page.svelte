@@ -59,13 +59,13 @@
 <KeyPair {keyPair}/>
 <button onclick={reroll}>Reroll</button>
 </div>
-<img height=200 width=800 src="secretsafe.jpg" class={result ? "show" : "hide"}>
+<img height=200 width=800 src="./secretsafe.jpg" class={result ? "show" : "hide"}>
 </div>
 </main>
 
 <style>
     :global(body) {
-        background-image: url("keepyoursecrets.jpeg");
+        background-image: url("https://wgreenberg.github.io/badcrypt/keepyoursecrets.jpeg");
     }
 
     .container {
