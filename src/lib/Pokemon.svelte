@@ -23,8 +23,6 @@
 </script>
 
 <div>
-    <fieldset role="group">
     <input type="number" max="720" bind:value={pokedexIndex} />
     <input type="submit" onclick={randomize} value="I'm Feeling Lucky" />
-    </fieldset>
 </div>

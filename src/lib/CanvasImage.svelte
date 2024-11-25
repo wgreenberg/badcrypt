@@ -67,7 +67,12 @@
             <input type={secretInputType} bind:value={secretStr} />
             <input type="submit" onclick={applySecret} value="Encrypt/Decrypt" />
         </fieldset>
-        <label for="showSecret"><input type="checkbox" name="showSecret" bind:checked={showSecret} />Show Secret</label>
+        <fieldset>
+            <div class="field-row">
+                <input id="showSecret" type="checkbox" bind:checked={showSecret} />
+                <label for="showSecret">Show Secret</label>
+            </div>
+        </fieldset>
     </div>
     {#if downloadReady}
     <a href="#" onclick={download}><img src="download.gif"></a>
@@ -76,6 +81,10 @@
 </div>
 
 <style>
+    :global(label), :global(input[type="text"]) {
+        font-size: 14px;
+    }
+
 canvas {
     width: 300px;
     height: 300px;

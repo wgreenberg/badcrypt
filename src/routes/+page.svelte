@@ -28,15 +28,30 @@
 </script>
 
 <main>
-<div class="container">
-    <img src="cat1.gif">
-    <div class="image">
+<div class="window">
+    <div class="title-bar">
+        <div class="title-bar-text">
+            Symmetric image encryption
+        </div>
+    </div>
+    <div class="window-body">
+        <fieldset>
         <ImageLoad bind:image={uploadedImage} {height} {width} />
+        <br>
         <Pokemon bind:image={pokemonImage} />
+        </fieldset>
         <CanvasImage {height} {width} {image} bind:base64ImageData={base64ImageData} />
     </div>
+<div class="status-bar">
+    <div class="status-bar-field">
+    <img src="cat1.gif">
+    </div>
+</div>
 </div>
 </main>
 
 <style>
+    :global(label), :global(input[type="text"]), :global(input[type="password"]) {
+        font-size: 14px;
+    }
 </style>

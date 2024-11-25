@@ -15,8 +15,16 @@
 
 <div>
     <div>
-        <label><input bind:group={operation} type="radio" value={Operation.Encrypt}>Encrypt</label>
-        <label><input bind:group={operation} type="radio" value={Operation.Decrypt}>Decrypt</label>
+        <fieldset>
+            <div class="field-row">
+                <input id="encrypt" bind:group={operation} type="radio" value={Operation.Encrypt}>
+                <label for="encrypt">Encrypt</label>
+            </div>
+            <div class="field-row">
+                <input id="decrypt" bind:group={operation} type="radio" value={Operation.Decrypt}>
+                <label for="decrypt">Decrypt</label>
+            </div>
+        </fieldset>
     </div>
     {#if operation === Operation.Encrypt}
     <div>

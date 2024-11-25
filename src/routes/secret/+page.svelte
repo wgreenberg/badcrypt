@@ -39,8 +39,13 @@
 </script>
 
 <main>
-<div class="container">
-<div class="opbox">
+<div class="window" style="width: 320px">
+    <div class="title-bar">
+        <div class="title-bar-text">
+            RSA-based secret sharing
+        </div>
+    </div>
+<div class="window-body">
     <OperationChooser bind:operation={operation} bind:recipientKey={recipientKey} />
     {#if operation !== Operation.None}
     <div>
@@ -48,32 +53,34 @@
     <fieldset role="group">
     <input type="text" maxlength={operation === Operation.Encrypt ? 4 : undefined} bind:value={input} />
     <input type="submit" onclick={go} value="GO" />
-    </fieldset>
     {#if result}
         <span><b>Copied result: </b> {result}</span>
     {/if}
+    </fieldset>
     </div>
     {/if}
-    <img src="./secretsafe.jpg" class={result ? "show" : "hide"}>
+    <div class="keyzone">
+        <fieldset>
+    <KeyPair {keyPair}/>
+    <button onclick={reroll}>Reroll</button>
+    </fieldset>
 </div>
-<div class="keyzone">
-<KeyPair {keyPair}/>
-<button onclick={reroll}>Reroll</button>
 </div>
+</div>
+<div class={operation === Operation.None ? "window hide" : "window show"} >
+    <div class="title-bar">
+        <div class="title-bar-text">
+            keep it secret
+        </div>
+    </div>
+    <img width="50%" src={ result ? "./secretsafe.jpg" : "./keepyoursecrets.jpeg" } >
 </div>
 </main>
 
 <style>
-    :global(body) {
-        background-image: url("https://wgreenberg.github.io/badcrypt/keepyoursecrets.jpeg");
+    :global(label), :global(input[type="text"]), :global(input[type="password"]) {
+        font-size: 14px;
     }
-
-    .container {
-        padding: 10px;
-        width: 500px;
-        background-color: rgba(50, 50, 50, 0.5);
-    }
-
     .hide {
         height: 0;
         width: 0;
@@ -89,9 +96,5 @@
       -webkit-transition: opacity 2s linear;
       -moz-transition: opacity 2s linear;
       -o-transition: opacity 2s linear;
-    }
-
-    .keyzone {
-        border: 1px dashed black;
     }
 </style>
